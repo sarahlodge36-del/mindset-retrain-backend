@@ -5,11 +5,10 @@ let db;
 async function connectDB() {
   try {
     const client = new MongoClient(MONGO_URI, {
-      // ✅ THESE 4 LINES FIX THE SSL ERROR!!! 🔐
       ssl: true,
       tls: true,
-      tlsAllowInvalidCertificates: true,
-      useUnifiedTopology: true
+      tlsAllowInvalidCertificates: true
+      // ✅ REMOVED the "useUnifiedTopology" line — IT'S NOT NEEDED ANYMORE!
     });
     await client.connect();
     db = client.db('mindset-retrain');
